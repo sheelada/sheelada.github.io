@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Divya Resume</title>
+
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/icon.png" rel="icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+    rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/resume.min.css" rel="stylesheet">
+  <script type="text/javascript">
+    var shown = false;
+
+    function showhideEmail() {
+      if (shown) {
+        document.getElementById('email').innerHTML = "Click here to show my email";
+        shown = false;
+      }
+      else {
+        var myemail = "<a href='mailto:sheelada" + "@" + "mail.uc.edu'>sheelada" + "@" + "mail.uc.edu</a>";
+        document.getElementById('email').innerHTML = myemail;
+        shown = true;
+      }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    $(document).ready(function () {
+      // Fetch data from Weatherbit API
+      $.getJSON("https://api.weatherbit.io/v2.0/current?city=cincinnati&key=08d6dd69bae245f081687c17710408a2", function (data) {
+        // Extract relevant weather information
+        var temperature = data.data[0].temp;
+        var description = data.data[0].weather.description;
+        var iconCode = data.data[0].weather.icon;
+
+        // Update weather information
+        $("#weather-info").text("Current Temperature: " + temperature + "°C, Weather: " + description);
+
+        //update weather icon
+        $("#weather-icon").attr("src", "https://www.weatherbit.io/static/img/icons/" + iconCode + ".png");
+        $("#weather-icon").attr("alt", description);
+      });
+    });
+  </script>
+  <style>
+    #response {
+      background-color: #ff9800;
+    }
+
+    #weather-box {
+      background-color: #04181c;
+      /* Set background color */
+      padding: 10px;
+      /* Add padding */
+      border-radius: 5px;
+      /* Add rounded corners */
+      margin-bottom: 20px;
+      /* Add margin to separate from other content */
+    }
+  </style>
+  <script>
+    // Function to set or retrieve the value of a cookie
+    function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    // Function to display the welcome message
+    function displayWelcomeMessage() {
+      var lastVisit = getCookie("lastVisit");
+      if (!lastVisit) {
+        // First-time visit
+        setCookie("lastVisit", new Date().toISOString(), 30); // Set cookie to expire in 30 days
+        alert("Welcome to my homepage!");
+      } else {
+        // Returning visit
+        var lastVisitDate = new Date(lastVisit);
+        alert("Welcome back! Your last visit was " + lastVisitDate.toLocaleString());
+      }
+    }
+
+    // Call the function when the page loads
+    window.onload = displayWelcomeMessage;
+  </script>
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.png" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="text-align:left;">
+    <a href="https://info.flagcounter.com/szVl"><img
+        src="https://s11.flagcounter.com/count2/szVl/bg_FFFFFF/txt_000000/border_000000/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/"
+        alt="Flag Counter" border="0"></a>
+  </div>
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+      <div class="my-auto">
+        <h1 class="mb-0">Divya
+          <span class="text-primary">Sheelam</span>
+        </h1>
+        <div class="subheading mb-5">566 Lowell Avenue · Cincinnati, OH 45220 · (513) 413-5402 ·
+          <div class="btn-email" id="email" onclick="showhideEmail()">click here to show my email</div>
+          <a href="https://sheelada.github.io/waph.html" target="_blank">click here to view waph.html</a>
+        </div>
+
+        <p class="mb-3">Driven and adaptable IT professional with a strong foundation in software engineering and
+          software development. Experienced in developing innovative solutions and leveraging emerging technologies to
+          address real-world challenges. Dedicated to continuous learning and growth, I thrive in collaborative
+          environments where I can contribute my expertise to create meaningful impact.</p>
+
+        <ul class="list-inline list-social-icons mb-0">
+
+          <li class="list-inline-item">
+            <a href="http://www.linkedin.com/in/divya-reddy-s" target="_blank">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://github.com/sheelada" target="_blank">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div class="text-dark mt-3 mb-3" id="digital-clock"></div>
+        <div class="text-success" id="joke"></div>
+        <div class="mt-3" id="app">
+          <h3> Hacker News Trending Articles</h3>
+          <ul>
+            <li v-for="article in articles" :key="article.id">
+              <a :href="article.url" target="_blank">{{ article.title }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <script>
+          new Vue({
+            el: '#app',
+            data: {
+              articles: []
+            },
+            mounted() {
+              this.fetchArticles();
+            },
+            methods: {
+              fetchArticles() {
+                fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+                  .then(response => response.json())
+                  .then(ids => {
+                    // Take only the first 10 article IDs
+                    ids = ids.slice(0, 5);
+                    // Fetch details of each article
+                    Promise.all(ids.map(id =>
+                      fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+                        .then(response => response.json())
+                    ))
+                      .then(articles => {
+                        // Update articles data
+                        this.articles = articles;
+                      });
+                  })
+                  .catch(error => console.error('Error fetching articles:', error));
+              }
+            }
+          });
+        </script>
+      </div>
+      <div>
+        <div id="weather-box">
+          <img class="d-inline-flex p-2" id="weather-icon" src="" alt="">
+          <h4 class="text-info text-center mt-0">Cincinnati, Ohio</h4>
+          <div class="mb-2" id="weather-info"></div>
+
+        </div>
+        <canvas class="text-dark ml-4 mt-4" id="analog-clock" width="150" height="150"></canvas>
+        <script src="https://waph-uc.github.io/clock.js"></script>
+
+      </div>
+
+      <script type="text/javascript">
+        var shown = false;
+
+        function displayTime() {
+          document.getElementById('digital-clock').innerHTML = "current time:" + new Date();
+        }
+        setInterval(displayTime, 500);
+        //code for analog clock
+        var canvas = document.getElementById("analog-clock");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.90
+        setInterval(drawClock, 1000);
+
+        function drawClock() {
+          drawFace(ctx, radius);
+          drawNumbers(ctx, radius);
+          drawTime(ctx, radius);
+        }
+
+        function fetchJoke() {
+          $.get("https://v2.jokeapi.dev/joke/Any", function (result) {
+            console.log("From jokeAPI: " + JSON.stringify(result));
+            if (result && result.joke) {
+              $("#joke").text("Here's a joke for you: " + result.joke);
+            } else {
+              $("#joke").text("Could not retrieve a joke at the moment.");
+            }
+          });
+        }
+
+        // Function to fetch a new joke every minute
+
+
+        // Call the function to start fetching jokes
+        fetchJoke();
+        setInterval(fetchJoke, 60000);
+      </script>
+
+    </section>
+
+
+
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
+      <div class="my-auto">
+        <h2 class="mb-5">Experience</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Custom Software Engineering Associate</h3>
+            <div class="subheading mb-3">Accenture</div>
+            <p>Acquired comprehensive training in C# and DOTNET to excel in application development, with a focus on
+              utilizing HTML, CSS, and JavaScript to craft user-friendly interfaces. Profound familiarity in Agile and
+              DevOps methodologies for efficient software development.</p>
+            <p>Collaborated with a cross-functional team to successfully deliver a client project, leveraging SharePoint
+              to meet specific client demands and ensuring seamless teamwork throughout the project lifecycle.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Oct 2022 – Jul 2023</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Programmer Analyst</h3>
+            <div class="subheading mb-3">Cognizant</div>
+            <p>Developed proficiency in MySQL, Python, Oracle Database, Java, Data Warehousing, Informatica, and
+              Software engineering, encompassing both software development and software testing.</p>
+            <p>Collaborated on a project Student Report using ETL architecture to load a sample data warehouse for an
+              educational institution and performed software testing for various test cases according to their
+              requirements.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Feb 2022 - Aug 2022</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Front End Development Trainee</h3>
+            <div class="subheading mb-3">Skill Safari</div>
+            <p>Underwent training in HTML 5, CSS, Java Script, Bootstrap and designed interactive web pages.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Jul 2020 - Sept 2020</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
+      <div class="my-auto">
+        <h2 class="mb-5">Education</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">University of Cincinnati</h3>
+            <div class="subheading mb-3">Master of Science in Information Technology</div>
+            <p>GPA: 3.92</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Aug 2023 - expected Dec 2024</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Anurag Group of Institutions</h3>
+            <div class="subheading mb-3">Bachelor of Technology (Electrical & Electronics Eng.)</div>
+            <p>GPA: 3.42</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Aug 2018 - July 2022</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+      <div class="my-auto">
+        <h2 class="mb-5">Skills</h2>
+        <div class="myskills">
+          <ul>
+            <li><strong>Languages:</strong> Python, C language, C#, Java</li>
+            <li><strong>Databases:</strong> MySQL, Oracle</li>
+            <li><strong>Developer Tools:</strong> GitHub, Visual Studio, Anaconda</li>
+            <li><strong>Frameworks:</strong> Bootstrap, .NET</li>
+            <li><strong>Operating Systems:</strong> Linux, Windows, Mac</li>
+            <li><strong>Familiar With:</strong> HTML 5, CSS, JavaScript, jQuery, Ajax, Data Structures and Algorithms
+            </li>
+          </ul>
+        </div>
+
+    </section>
+
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
+      <div class="my-auto">
+        <h2 class="mb-5">Projects</h2>
+        <div class="resume-item d-flex flex-column flex-md-row">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Plant Disease Detection</h3>
+            <div class="subheading mb-3">Python, TensorFlow, Deep Learning, OpenCV, CNN</div>
+            <p>Constructed a Convolution Neural Network for predicting plant diseases, web application is developed to
+              display results. Trained the CNN model with an extensive dataset of thousands of images, achieving a 95%
+              accuracy in disease classification using TensorFlow, Keras, and Pandas libraries</p>
+          </div>
+        </div>
+        <div class="resume-item d-flex flex-column flex-md-row">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">House Sale Price Prediction using Machine Learning</h3>
+            <div class="subheading mb-3">Linear Regression Algorithm, Python</div>
+            <p>Created an ML model to predict house sale prices based on location, construction year, and renovation
+              frequency.
+              Implemented a linear regression algorithm, yielding optimal results with an 89% accuracy.
+            </p>
+          </div>
+        </div>
+        <div class="resume-item d-flex flex-column flex-md-row">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Smart Irrigation and Trespassing Alarm System</h3>
+            <div class="subheading mb-3">Embedded C</div>
+            <p>Designed an Embedded C system featuring a soil moisture sensor for automated farm irrigation. Implemented
+              an ultrasonic sensor to detect trespassers, triggering an alarm when necessary.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="certifications">
+      <div class="my-auto">
+        <h2 class="mb-5">Certifications</h2>
+        <ul class="fa-ul mb-0">
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Certification of Microsoft in Azure Fundamentals.
+          </li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Certification of Microsoft in Microsoft Security, Compliance, and Identity.
+          </li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>Certification of Microsoft in Microsoft Power Platform
+            Fundamentals.
+          </li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>Certification in Python Programming by Google at Coursera.
+          </li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>Machine learning Course from Internshala.
+          </li>
+        </ul>
+      </div>
+      <div class="my-auto">
+        <h2 class="mb-5">Activities</h2>
+        <ul>
+          <li>
+            Led a dedicated team in volunteering at the Seventh International Conference on Transformations in
+            Engineering Education (ICTIEE) held at Anurag Group of Institutions by IUCEE.</li>
+          <li>
+            Completed Arduino workshop at Anurag Group of Institutions, gaining knowledge in Arduino IDE with Embedded
+            C, and applying skills in various IoT projects.</li>
+          <li>
+            Actively engaged in Inter-college volleyball tournaments, securing multiple awards and appreciations.</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/resume.min.js"></script>
+
+</body>
+
+</html>
